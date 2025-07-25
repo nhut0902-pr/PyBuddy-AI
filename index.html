@@ -1,68 +1,13 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PyBuddy AI - Trợ giảng Python</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-    <div class="container">
-        <header>
-            <h1><span class="icon">🤖</span> PyBuddy AI</h1>
-            <p>Trợ giảng Python đa năng của bạn</p>
-        </header>
-
-        <div class="tabs">
-            <button class="tab-link active" data-tab="main-tool">Công cụ AI</button>
-            <button class="tab-link" data-tab="history">Lịch sử</button>
-        </div>
-
-        <!-- Tab Công cụ AI -->
-        <main id="main-tool" class="tab-content active">
-            <div class="input-section">
-                <label for="action-select">Chọn một tính năng:</label>
-                <select id="action-select">
-                    <option value="explain">Giải thích Code</option>
-                    <option value="debug">Sửa lỗi Code</option>
-                    <option value="optimize">Tối ưu Code</option>
-                    <option value="text_to_code">Tạo Code từ Mô tả</option>
-                    <option value="create_quiz">Tạo Câu hỏi Trắc nghiệm</option>
-                </select>
-
-                <textarea id="mainInput" rows="10" placeholder="Nhập code hoặc mô tả của bạn ở đây..."></textarea>
-                <button id="submitButton">Gửi yêu cầu</button>
-            </div>
-
-            <div class="output-section">
-                <h2>Phản hồi từ AI:</h2>
-                <div id="resultContainer" class="result-box">
-                    <p class="placeholder">Kết quả sẽ hiển thị ở đây...</p>
-                </div>
-            </div>
-        </main>
-        
-        <!-- Tab Lịch sử -->
-        <div id="history" class="tab-content">
-            <h2>Lịch sử các yêu cầu</h2>
-            <div id="historyContainer">
-                <p class="placeholder">Chưa có lịch sử.</p>
-            </div>
-            <button id="clearHistoryButton">Xóa lịch sử</button>
-        </div>
-
-        <footer>
-            <p>Được xây dựng với Gemini & ❤️</p>
-        </footer>
-    </div>
-
-    <!-- Tích hợp thư viện Marked.js để hiển thị Markdown đẹp hơn -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> 
-    <!-- File JavaScript chính của chúng ta -->
-    <script src="script.js"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn Python with AI</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
