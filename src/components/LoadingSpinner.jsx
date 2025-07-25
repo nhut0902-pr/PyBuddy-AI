@@ -1,5 +1,7 @@
+// src/components/LoadingSpinner.jsx (Đã sửa lỗi)
 import React from 'react';
-import './LoadingSpinner.css';
+
+// Dòng 'import ./LoadingSpinner.css' đã được XÓA khỏi đây.
 
 const LoadingSpinner = () => {
   return <div className="spinner"></div>;
