@@ -1,6 +1,8 @@
+// src/components/Header.jsx (Đã sửa lỗi)
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import './Header.css';
+
+// Dòng 'import ./Header.css' đã được XÓA khỏi đây.
 
 const Header = () => {
   return (
@@ -18,8 +20,7 @@ const Header = () => {
   );
 };
 
-// Create a new file src/components/Header.css for styles
-// and add the following content to it.
+// Phần này sẽ tự động thêm CSS vào trang, vì vậy chúng ta không cần file .css riêng.
 const styles = `
 .app-header {
   display: flex;
