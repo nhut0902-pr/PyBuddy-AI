@@ -1,24 +1,7 @@
-# Đây là file cấu hình cho Netlify.
-# Nó cho Netlify biết cách build và deploy trang web của bạn.
-# Mọi thiết lập trong file này sẽ ghi đè lên các cài đặt trên giao diện web của Netlify.
-
-# Phần [build] định nghĩa các cài đặt cho quá trình xây dựng.
 [build]
-  
-  # Lệnh để chạy quá trình build.
-  # Vì dự án của chúng ta là trang web tĩnh (chỉ HTML, CSS, JS), 
-  # không cần chạy lệnh nào cả nên chúng ta để trống.
-  command = ""
+  command = "npm run build"
+  publish = "dist"
 
-  # Thư mục chứa các file sẽ được đưa lên web (publish).
-  # "." có nghĩa là thư mục gốc của repository, nơi chứa các file index.html, style.css, v.v.
-  publish = "."
-
-# Bạn có thể thêm các cấu hình khác ở đây trong tương lai.
-# Ví dụ, nếu sau này bạn muốn tất cả các trang không tìm thấy (lỗi 404)
-# đều được chuyển về trang chủ, bạn có thể thêm:
-#
-# [[redirects]]
-#   from = "/*"
-#   to = "/index.html"
-#   status = 200
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
