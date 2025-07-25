@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearHistoryButton = document.getElementById('clearHistoryButton');
 
     // !!! QUAN TRỌNG: THAY THẾ BẰNG URL BACKEND CỦA BẠN TRÊN RENDER !!!
-    const API_URL = 'https://your-backend-name.onrender.com/api';
+    const API_URL = 'https://pybuddy-ai.onrender.com/api';
 
     let history = JSON.parse(localStorage.getItem('pybuddy_history')) || [];
 
