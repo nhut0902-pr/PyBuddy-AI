@@ -1,10 +1,18 @@
-// netlify/functions/generate.js (NỘI DUNG ĐÚNG)
-const { GoogleGenerativeAI } = require("@google/generative-ai");
+// netlify/functions/generate.js (Phiên bản đơn giản hóa)
 
-// Lấy API key từ biến môi trường của Netlify, không hardcode vào đây!
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+// Sử dụng cú pháp import thay vì require
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
+  const { GEMINI_API_KEY } = process.env;
+
+  if (!GEMINI_API_KEY) {
+      return {
+          statusCode: 500,
+          body: JSON.stringify({ error: "Gemini API key not found." }),
+      };
+  }
+
   // Chỉ cho phép phương thức POST
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
@@ -14,9 +22,10 @@ exports.handler = async function (event, context) {
     const { prompt } = JSON.parse(event.body);
 
     if (!prompt) {
-      return { statusCode: 400, body: "Bad Request: Missing prompt" };
+      return { statusCode: 400, body: JSON.stringify({ error: "Bad Request: Missing prompt" }) };
     }
-
+    
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
     const result = await model.generateContent(prompt);
@@ -29,6 +38,6 @@ exports.handler = async function (event, context) {
     };
   } catch (error) {
     console.error("Error calling Gemini API:", error);
-    return { statusCode: 500, body: "Internal Server Error" };
+    return { statusCode: 500, body: JSON.stringify({ error: "Internal Server Error" }) };
   }
-};
+}
