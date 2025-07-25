@@ -1,12 +1,7 @@
-# netlify.toml (Phiên bản cuối cùng)
+# netlify.toml (Đã sửa lỗi cú pháp)
 [build]
   command = "npm run build"
   publish = "dist"
 
 [functions]
-  directory = "netlify/functions"
-
-[[functions]]
-  # Áp dụng cho tất cả các functions
-  name = "*"
   node_bundler = "esbuild"
