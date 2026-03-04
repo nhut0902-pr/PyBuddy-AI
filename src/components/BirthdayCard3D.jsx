@@ -3,13 +3,17 @@ import { useFrame } from '@react-three/fiber';
 import { Text, Float, PresentationControls } from '@react-three/drei';
 import * as THREE from 'three';
 
-const BirthdayCard3D = () => {
+const BirthdayCard3D = ({ recipientName = "Bạn", wish }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const cardRotation = useRef(0);
+  const coverRef = useRef();
+
+  const defaultWish = `Hy vọng tuổi mới của bạn \ntràn ngập niềm vui, \nhạnh phúc và thành công!`;
 
   useFrame((state, delta) => {
-    const targetRotation = isOpen ? -Math.PI * 0.8 : 0;
-    cardRotation.current = THREE.MathUtils.lerp(cardRotation.current, targetRotation, 0.1);
+    if (coverRef.current) {
+      const targetRotation = isOpen ? -Math.PI * 0.8 : 0;
+      coverRef.current.rotation.y = THREE.MathUtils.lerp(coverRef.current.rotation.y, targetRotation, 0.1);
+    }
   });
 
   return (
@@ -26,42 +30,45 @@ const BirthdayCard3D = () => {
           setIsOpen(!isOpen);
       }}>
         {/* Back Cover */}
-        <mesh position={[0, 0, -0.01]}>
-          <boxGeometry args={[4, 6, 0.1]} />
-          <meshStandardMaterial color="#ff4d4d" />
+        <mesh position={[0, 0, -0.1]}>
+          <boxGeometry args={[4.2, 6.2, 0.1]} />
+          <meshStandardMaterial color="#d00000" />
         </mesh>
 
         {/* Inner Right Page (Static) */}
-        <mesh position={[0, 0, 0]}>
-          <boxGeometry args={[3.9, 5.9, 0.05]} />
-          <meshStandardMaterial color="#fff5f5" />
+        <mesh position={[0, 0, -0.04]}>
+          <boxGeometry args={[4, 6, 0.05]} />
+          <meshStandardMaterial color="#fffafa" />
         </mesh>
 
         <Text
-          position={[0, 1, 0.1]}
-          fontSize={0.3}
+          position={[0, 1.5, 0]}
+          fontSize={0.25}
           color="#d00000"
           anchorX="center"
           anchorY="middle"
-          maxWidth={3}
+          maxWidth={3.5}
+          textAlign="center"
         >
-          Chúc mừng sinh nhật!
+          {`Chúc mừng sinh nhật,\n${recipientName}!`}
         </Text>
         <Text
-          position={[0, -0.5, 0.1]}
-          fontSize={0.18}
-          color="#444"
+          position={[0, -0.2, 0]}
+          fontSize={0.16}
+          color="#333"
           anchorX="center"
           anchorY="middle"
           maxWidth={3.5}
+          lineHeight={1.5}
+          textAlign="center"
         >
-          {`Hy vọng tuổi mới của bạn \ntràn ngập niềm vui, \nhạnh phúc và thành công!`}
+          {wish || defaultWish}
         </Text>
 
         {/* Front Cover (Rotating) */}
-        <group position={[-2, 0, 0.05]} rotation={[0, cardRotation.current, 0]}>
+        <group ref={coverRef} position={[-2, 0, 0.05]}>
           <mesh position={[2, 0, 0]}>
-            <boxGeometry args={[4, 6, 0.1]} />
+            <boxGeometry args={[4.2, 6.2, 0.1]} />
             <meshStandardMaterial color="#ff4d4d" />
           </mesh>
 
@@ -69,29 +76,33 @@ const BirthdayCard3D = () => {
           <group position={[2, 0, 0.1]}>
              <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
                 <Text
-                    fontSize={0.5}
+                    fontSize={0.4}
                     color="white"
                     anchorX="center"
                     anchorY="middle"
+                    maxWidth={3.5}
+                    textAlign="center"
+                    outlineWidth={0.02}
+                    outlineColor="#d00000"
                 >
-                    MỞ RA ĐI!
+                    {`Gửi tặng\n${recipientName}`}
                 </Text>
                 <Text
-                    position={[0, -1, 0]}
+                    position={[0, -1.5, 0]}
                     fontSize={0.2}
                     color="#ffd700"
                     anchorX="center"
                     anchorY="middle"
                 >
-                    (Click vào thiệp)
+                    (Bấm để mở thiệp)
                 </Text>
              </Float>
           </group>
 
           {/* Inner Left Page (Inside the cover) */}
           <mesh position={[2, 0, -0.06]} rotation={[0, Math.PI, 0]}>
-            <boxGeometry args={[3.9, 5.9, 0.01]} />
-            <meshStandardMaterial color="#fff5f5" />
+            <boxGeometry args={[4, 6, 0.01]} />
+            <meshStandardMaterial color="#fffafa" />
           </mesh>
         </group>
       </group>
