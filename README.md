@@ -12,11 +12,17 @@ Bạn không cần máy tính để cài đặt. Chỉ cần làm theo các bư�
 2.  Tạo một repository mới (ví dụ: `gemini-python-tutor`).
 3.  Trong repository mới tạo, hãy tạo lại chính xác cấu trúc thư mục và file đã được cung cấp. Copy và paste nội dung của từng file vào đúng vị trí.
 
-### Bước 2: Lấy API Key của Google Gemini
+### Bước 2: Lấy các API Key cần thiết
 
-1.  Đi đến [Google AI Studio](https://aistudio.google.com/).
-2.  Nhấp vào **"Get API key"** và tạo một API key mới.
-3.  **Sao chép và lưu key này lại một cách cẩn thận. Đây là thông tin bí mật.**
+Trang web này sử dụng hai dịch vụ AI:
+1.  **Google Gemini (Cho phần học Python):**
+    - Đi đến [Google AI Studio](https://aistudio.google.com/).
+    - Nhấp vào **"Get API key"** và tạo một API key mới.
+2.  **Inception AI (Cho phần tạo lời chúc sinh nhật):**
+    - Đi đến [platform.inceptionlabs.ai](https://platform.inceptionlabs.ai/).
+    - Đăng nhập và tạo một API key mới trong phần **API Keys**.
+
+**Lưu ý: Sao chép và lưu các key này lại một cách cẩn thận. Đây là thông tin bí mật.**
 
 ### Bước 3: Triển khai với Netlify
 
@@ -26,9 +32,13 @@ Bạn không cần máy tính để cài đặt. Chỉ cần làm theo các bư�
 4.  Chọn repository `gemini-python-tutor` mà bạn đã tạo ở Bước 1.
 5.  Netlify sẽ tự động phát hiện các cài đặt build từ file `netlify.toml`. Bạn không cần thay đổi gì ở đây.
 6.  **Bước quan trọng nhất:** Trước khi nhấn deploy, hãy vào phần **"Advanced build settings"** hoặc tìm mục **"Environment variables"**.
-    *   Nhấp vào **"New variable"**.
-    *   **Key:** `GEMINI_API_KEY`
-    *   **Value:** Dán API key của Gemini bạn đã lấy ở Bước 2 vào đây.
+    *   Nhấp vào **"Add variable"** -> **"Add a single variable"**.
+    *   Thêm biến thứ nhất:
+        - **Key:** `GEMINI_API_KEY`
+        - **Value:** Dán API key của Gemini.
+    *   Thêm biến thứ hai:
+        - **Key:** `INCEPTION_API_KEY`
+        - **Value:** Dán API key của Inception AI.
 7.  Cuối cùng, nhấp vào nút **"Deploy site"** (hoặc "Deploy `your-repo-name`").
 
 Netlify sẽ bắt đầu quá trình build và triển khai trang web của bạn. Quá trình này có thể mất vài phút. Sau khi hoàn tất, Netlify sẽ cung cấp cho bạn một URL công khai (ví dụ: `your-site-name.netlify.app`) để truy cập trang web.

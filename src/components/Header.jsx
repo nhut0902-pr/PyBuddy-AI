@@ -11,6 +11,8 @@ const Header = () => {
         <NavLink to="/">PyTutor AI</NavLink>
       </div>
       <nav>
+        <NavLink to="/">Birthday</NavLink>
+        <NavLink to="/home">Python Tutor</NavLink>
         <NavLink to="/lessons">Lessons</NavLink>
         <NavLink to="/examples">Examples</NavLink>
         <NavLink to="/quiz">Quiz</NavLink>
